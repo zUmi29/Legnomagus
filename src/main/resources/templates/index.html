@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
-    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
-<h1>Hello</h1>
+<div class="navbar">
+    <a th:href="@{/}" class="logo">Logo</a>
+    <tr th:each="categoria : ${categorie}">
+        <td>
+            <a th:href="@{/categorie(id=${categoria.id})}" th:text="${categoria.categoria}"></a>
+        </td>
+    </tr>
+    <a href="#" class="right">Contact</a>
+
+</div>
+<div  th:if="${admin}" ><a th:href="@{/modifica}">Modifica</a></div>
 <!--
 <div class="navbar">
 <a th:href="@{/prodotticategoria(id=${prodotto.categoria.categoria})}" th:text="Sedie"></a>
 </div>-->
 <div class="card" th:each="prodotto : ${prodotti}">
     <div class="container">
-        <a th:href="@{/dettaglio(id=${prodotto.id})}"><img th:src="@{'image/articolo' + ${prodotto.id} + '.png'}" alt="immagineProdotto"></a>
+        <a th:href="@{/dettaglio(id=${prodotto.id})}"><img th:src="@{${prodotto.immagine == null ? 'articolo1.png' : prodotto.immagine}}" style="
+max-height: 100px;" alt="Immagine Articolo"></a>
         <br>
         <td th:text="'Nome prodotto: '+${prodotto.nome}"></td>
         <br>

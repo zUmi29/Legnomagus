@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <title>Aggiungi o Modifica</title>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/}" class="logo">Logo</a>
+    <tr th:each="categoria : ${categorieNav}">
+        <td>
+            <a th:href="@{/categorie(id=${categoria.id})}" th:text="${categoria.categoria}"></a>
+        </td>
+    </tr>
+    <a href="#" class="right">Contact</a>
+
+</div>
+<a th:href="@{/}">Torna alla home</a>
+
+<form action="/modifica" method="post" enctype="multipart/form-data">
+    <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Nome prodotto" required>
+    <br>
+    <input type="text" name="descrizione" th:value="${prodotto.descrizione}" placeholder="Descrizione prodotto" required>
+    <br>
+    <input type="number"  name="prezzo" step="any" th:value="${prodotto.prezzo}" placeholder="Prezzo prodotto" required>
+    <br>
+    <select name="categoria">
+        <option th:each="categoria : ${categorie}" th:text="${categoria.categoria}" th:value="${categoria.id}"
+                th:selected="${prodotto.categoria != null && prodotto.categoria.id == categoria.id}" > </option>
+    </select>
+    <br>
+    <input type="file" name="immagine">
+    <br>
+    <input type="submit" th:value="${prodotto.id != null ? 'Aggiorna Articolo' : 'Registra Articolo'}">
+</form>
+<hr>
+<div class="card" th:each="prodotto : ${prodotti}">
+    <div class="container">
+        <a th:href="@{/dettaglio(id=${prodotto.id})}"><img th:src="@{${prodotto.immagine == null ? 'articolo1.png' : prodotto.immagine}}" style="
+max-height: 100px;" alt="Immagine Articolo"></a>
+        <br>
+        <td th:text="'Nome prodotto: '+${prodotto.nome}"></td>
+        <br>
+        <td th:text="'Categoria prodotto: '+${prodotto.categoria.categoria}"></td>
+        <br>
+        <td th:text="'Prezzo: '+${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
+        <br>
+        <td><a th:href="@{/modifica(id=${prodotto.id})}">Modifica ArticoloProdottolos</a></td>
+        <td><a th:href="@{/modifica/elimina(id=${prodotto.id})}">Elimina ArticoloProdottolos</a></td>
+    </div>
+</div>
+</body>
+</html>

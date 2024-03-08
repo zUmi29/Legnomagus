@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home page</title>
+    <title>Categories</title>
     <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
@@ -16,11 +16,6 @@
     <a href="#" class="right">Contact</a>
 
 </div>
-<div  th:if="${admin}" ><a th:href="@{/modifica}">Modifica</a></div>
-<!--
-<div class="navbar">
-<a th:href="@{/prodotticategoria(id=${prodotto.categoria.categoria})}" th:text="Sedie"></a>
-</div>-->
 <div class="card" th:each="prodotto : ${prodotti}">
     <div class="container">
         <a th:href="@{/dettaglio(id=${prodotto.id})}"><img th:src="@{${prodotto.immagine == null ? 'articolo1.png' : prodotto.immagine}}" style="
@@ -34,5 +29,6 @@ max-height: 100px;" alt="Immagine Articolo"></a>
         <br>
     </div>
 </div>
+
 </body>
 </html>

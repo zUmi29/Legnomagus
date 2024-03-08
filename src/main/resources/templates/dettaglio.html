@@ -2,12 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{css/styles.css}">
     <title>Dettaglio Prodotto</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
+<div class="navbar">
+    <a th:href="@{/}" class="logo">Logo</a>
+    <tr th:each="categoria : ${categorie}">
+        <td>
+            <a th:href="@{/categorie(id=${categoria.id})}" th:text="${categoria.categoria}"></a>
+        </td>
+    </tr>
+    <a href="#" class="right">Contact</a>
+
+</div>
     <div class="container">
-        <img th:src="@{'image/articolo' + ${prodotto.id} + '.png'}" alt="immagineProdotto">
+        <img th:src="@{${prodotto.immagine == null ? 'articolo1.png' : prodotto.immagine}}" style="
+max-height: 100px;" alt="Immagine Articolo">
         <br>
         <td th:text="'Nome prodotto: '+${prodotto.nome}"></td>
         <br>
@@ -15,6 +26,7 @@
         <br>
         <td th:text="'Prezzo: '+${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
         <br>
+        <td th:text="${prodotto.descrizione}"></td>
     </div>
     <a th:href="@{/}">Torna alla home</a>
 </body>

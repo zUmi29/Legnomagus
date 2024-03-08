@@ -1,5 +1,6 @@
 package com.example.Legnomagus.controller;
 
+import com.example.Legnomagus.dao.CategoriaDao;
 import com.example.Legnomagus.model.Categoria;
 import com.example.Legnomagus.model.Prodotto;
 import com.example.Legnomagus.service.CategoriaService;
@@ -15,19 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/dettaglio")
-public class DettaglioController {
+@RequestMapping("/categorie")
+public class CategorieController {
     @Autowired
     private ProdottoService prodottoService;
     @Autowired
     private CategoriaService categoriaService;
     @GetMapping
     public String getPage(Model model, @RequestParam("id")int id, HttpSession session){
+        List<Prodotto> prodotti = categoriaService.getAllProductsByIdCategoria(id, session);
         List<Categoria> categorie = categoriaService.getCategorie();
-        Prodotto prodotto = prodottoService.getProductById(id);
         model.addAttribute("categorie", categorie);
-        model.addAttribute("prodotto", prodotto);
-        return "dettaglio";
+        model.addAttribute("prodotti",prodotti);
+        return "categorie";
     }
-
 }

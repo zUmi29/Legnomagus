@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/prodotticategoria")
 public class ProdottiCategoriaController {
     @Autowired
-    CategoriaDao categoriaDao;
+    private CategoriaDao categoriaDao;
 
     @Autowired
-    ProdottoDao prodottoDao;
+    private ProdottoDao prodottoDao;
 
     @GetMapping
     public String getPage(HttpSession session){

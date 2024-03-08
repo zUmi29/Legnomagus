@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <title>Dettaglio Prodotto</title>
+</head>
+<body>
+    <div class="container">
+        <img th:src="@{'image/articolo' + ${prodotto.id} + '.png'}" alt="immagineProdotto">
+        <br>
+        <td th:text="'Nome prodotto: '+${prodotto.nome}"></td>
+        <br>
+        <td th:text="'Categoria prodotto: '+${prodotto.categoria.categoria}"></td>
+        <br>
+        <td th:text="'Prezzo: '+${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
+        <br>
+    </div>
+    <a th:href="@{/}">Torna alla home</a>
+</body>
+</html>

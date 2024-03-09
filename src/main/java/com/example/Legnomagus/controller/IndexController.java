@@ -41,16 +41,16 @@ public class IndexController {
                           @RequestParam(name = "username",required = false)String username,
                           @RequestParam(name = "password", required = false)String password,
                           @RequestParam(name = "admin",required = false)Admin admin){
-        adminService.controlloLogin(username, password, session);
-        if (adminService.controlloLogin(username, password, session)){
-            session.setAttribute("admin",admin);
+        boolean loginSuccess = adminService.controlloLogin(username, password, session);
+        if (loginSuccess){
             return "index";
         }
         List<Categoria> categorie = categoriaService.getCategorie();
         List<Prodotto> prodotti = prodottoService.getAllProducts();
         model.addAttribute("prodotti", prodotti);
         model.addAttribute("categorie", categorie);
-        System.out.println(session.getAttribute("admin"));
+        Admin admin1 = (Admin) session.getAttribute("admin");
+        model.addAttribute("admin",admin1);
         return "index";
     }
 }

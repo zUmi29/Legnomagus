@@ -17,8 +17,7 @@ public class AdminServiceImpl implements AdminService{
         if (admin != null) {
             session.setAttribute("admin", admin);
             return true;
-        }else {
-        return false;
         }
+        return false;
     }
 }

@@ -1,6 +1,10 @@
 img {
     width:100px;
 }
+.admin{
+border-radius: 10px;
+    width:50px;
+}
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -47,3 +51,4 @@ body {
     .navbar a.right {
         float: none;
     }}
+

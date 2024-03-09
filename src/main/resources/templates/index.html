@@ -16,7 +16,6 @@
     <a href="#" class="right">Contact</a>
 
 </div>
-<div  th:if="${admin}" ><a th:href="@{/modifica}">Modifica</a></div>
 <!--
 <div class="navbar">
 <a th:href="@{/prodotticategoria(id=${prodotto.categoria.categoria})}" th:text="Sedie"></a>
@@ -34,5 +33,8 @@ max-height: 100px;" alt="Immagine Articolo"></a>
         <br>
     </div>
 </div>
+
+    <a th:href="@{/modifica}"><img class="admin" th:src="@{'image/ImmagineAdmin.jpg'}" alt="immagineAdmin"></a>
+
 </body>
 </html>
